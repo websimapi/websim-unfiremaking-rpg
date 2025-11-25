@@ -3,6 +3,7 @@ import * as THREE from 'three';
 export class Player {
     constructor(scene) {
         this.scene = scene;
+        this.limbs = null;
         this.mesh = this.createCharacter();
         this.speed = 4;
         this.targetPosition = null;
@@ -111,6 +112,8 @@ export class Player {
     }
 
     animateWalk(dt) {
+        if (!this.limbs) return;
+
         this.animTime += dt * 10;
         
         // Simple swing
@@ -124,6 +127,8 @@ export class Player {
     }
 
     resetAnimation() {
+        if (!this.limbs) return;
+
         this.limbs.leftLeg.rotation.x = 0;
         this.limbs.rightLeg.rotation.x = 0;
         this.limbs.leftArm.rotation.x = 0;

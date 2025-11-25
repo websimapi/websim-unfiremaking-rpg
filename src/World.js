@@ -137,13 +137,24 @@ export class World {
     createBuckets() {
         const bucketGeo = new THREE.CylinderGeometry(0.3, 0.25, 0.5);
         const bucketMat = new THREE.MeshStandardMaterial({ color: 0x8b4513 });
-        const bucket = new THREE.Mesh(bucketGeo, bucketMat);
-        bucket.position.set(2, 0.25, 2);
-        bucket.castShadow = true;
-        bucket.userData = { type: 'bucket_item' };
         
-        this.scene.add(bucket);
-        this.interactables.push(bucket);
+        const positions = [
+            { x: 2, z: 2 },
+            { x: -5, z: -5 },
+            { x: 10, z: 0 },
+            { x: -8, z: 8 },
+            { x: 5, z: -8 }
+        ];
+
+        positions.forEach(pos => {
+            const bucket = new THREE.Mesh(bucketGeo, bucketMat);
+            bucket.position.set(pos.x, 0.25, pos.z);
+            bucket.castShadow = true;
+            bucket.userData = { type: 'bucket_item' };
+            
+            this.scene.add(bucket);
+            this.interactables.push(bucket);
+        });
     }
 
     removeObject(object) {
