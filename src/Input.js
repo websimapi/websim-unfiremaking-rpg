@@ -41,15 +41,17 @@ export class Input {
             this.game.player.moveTo(point);
             
             // Trigger interaction after a small delay (simulating walking there)
-            // In a real game, we'd wait until arrival. For this prototype, we'll check distance.
+            // We calculate the time needed based on distance and speed
             const dist = this.game.player.mesh.position.distanceTo(point);
+            const speed = this.game.player.speed || 4;
+            const timeToArrive = (dist / speed) * 1000; // milliseconds
             
             setTimeout(() => {
                 // If close enough, interact
                 if(this.game.player.mesh.position.distanceTo(point) < 2.0) {
                     this.handleInteraction(obj);
                 }
-            }, dist * 200); // Simple time approximation based on distance
+            }, timeToArrive + 100); // Add a small buffer of 100ms
             
             // Show click marker (optional)
             return;

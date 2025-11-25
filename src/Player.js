@@ -10,7 +10,6 @@ export class Player {
         
         // Animation
         this.animTime = 0;
-        this.limbs = {};
     }
 
     createCharacter() {
@@ -61,8 +60,6 @@ export class Player {
         // We really want to rotate limbs from the top, but for a simple prototype,
         // center rotation with offset geometry or container groups is better.
         // For simplicity here, we'll just rotate the meshes directly and accept minor clipping.
-
-        this.limbs = { leftArm, rightArm, leftLeg, rightLeg };
 
         group.position.set(0, 0, 0);
         this.scene.add(group);
