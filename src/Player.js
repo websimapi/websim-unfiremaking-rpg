@@ -56,6 +56,14 @@ export class Player {
         group.add(leftLeg);
         group.add(rightLeg);
 
+        // Store limb references for animation
+        this.limbs = {
+            leftArm,
+            rightArm,
+            leftLeg,
+            rightLeg
+        };
+
         // Pivot adjustments for animation
         // We really want to rotate limbs from the top, but for a simple prototype,
         // center rotation with offset geometry or container groups is better.
